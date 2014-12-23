@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Jquery</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="json.js"></script>
+    <script type="application/javascript">
+        (function(window) {
+            "use strict";
+             var obj ={
+                        objA:{
+                            nick:'shek',
+                            user:{
+                                name:'terry',
+                                tel:97336891
+                            }
+                        },
+                        objB:{
+                            nick:'tom',
+                            user: {
+                                name: 'peter',
+                                sex:'F'
+                            }
+                        },
+                        ready: function () {
+                            var result = $.extend(true, obj.objA, obj.objB)
+                            console.log(result)
+                            $('#myModal').on('shown.bs.modal', function () {
+                                console.log("Dialog open !")
+                            })
+                            $("#subForm").submit(function(){
+                                event.preventDefault();
+                                console.log($(this).serializeObject());
+
+                            })
+                        }
+            };
+            window.globalVar = obj
+        }(window));
+$(document).on('ready',function(){
+        globalVar.ready();
+})
+    </script>
+</head>
+<body>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+<!--dialog-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Register
+                </h4>
+            </div>
+            <form class="form-horizontal" id="subForm">
+            <div class="modal-body">
+
+                    <fieldset>
+
+                        <div class="control-group">
+                            <!-- Username -->
+                            <label class="control-label" for="username">Username</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="user[username]" placeholder="" class="input-xlarge">
+                                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- E-mail -->
+                            <label class="control-label" for="email">E-mail</label>
+                            <div class="controls">
+                                <input type="text" id="email" name="user[email]" placeholder="" class="input-xlarge">
+                                <p class="help-block">Please provide your E-mail</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- Password-->
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" id="password" name=user["password]" placeholder="" class="input-xlarge">
+                                <p class="help-block">Password should be at least 4 characters</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- Password -->
+                            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+                            <div class="controls">
+                                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                                <p class="help-block">Please confirm password</p>
+                            </div>
+                        </div>
+                    </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Register</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<!--dialog-->
+
+</body>
+</html>
